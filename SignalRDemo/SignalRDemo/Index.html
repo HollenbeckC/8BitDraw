@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="favicon.ico" rel="icon" />
+    <title>8-Bit Draw</title>
+    <!--Start Styles-->
+    <link href="index.css" rel="stylesheet" />
+    <!--End Styles-->
+</head>
+<body>
+
+    <div style="float:right;">
+        <select id="colors">
+            <option>red</option>
+            <option>blue</option>
+            <option>green</option>
+            <option>yellow</option>
+            <option>black</option>
+            <option>white</option>
+        </select>
+        <div id="drawBoard"></div>
+
+    </div>
+
+    <div id="messageBoard" class="container">
+        <div class="message-frame">
+            <ul id="discussion"></ul>
+        </div>
+        <div style="text-align: right;height: 100px;padding: 5px;">
+            <textarea type="text" id="message"></textarea>
+            <input type="button" id="sendmessage" value="Send" />
+        </div>
+        <input type="hidden" id="displayname" />
+        <input type="hidden" id="connectionID" />
+
+    </div>
+
+    <!--Script References-->
+    <script src="scripts/jquery-1.6.4.min.js"></script>
+    <script src="scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="signalr/hubs"></script>
+    <script src="connect.js"></script>
+    <script type="text/javascript"></script>
+
+</body>
+</html>
+

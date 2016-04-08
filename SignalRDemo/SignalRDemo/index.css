@@ -1,0 +1,71 @@
+﻿.container {
+    background-color: #99CCFF;
+    border: thick solid #808080;
+    height: auto;
+    width: 300px;
+}
+
+.message-frame {
+    padding: 10px;
+    height: 300px;
+    overflow: auto;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+th {
+    width: 18px;
+    height: 18px;
+    border: .5px solid black;
+    cursor:crosshair;
+}
+
+table {
+    background-color: white;
+    border-spacing: 0;
+}
+
+body {
+    padding: 5%;
+    background-color: lightblue;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.black {
+    background-color: black;
+}
+
+.white {
+    background-color: white;
+}
+
+ul {
+    list-style: none;
+    text-align: left;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+#message {
+    height: 84%;
+    width: 72%;
+}
+}
