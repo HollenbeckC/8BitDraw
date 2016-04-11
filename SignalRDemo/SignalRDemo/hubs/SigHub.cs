@@ -42,9 +42,16 @@ namespace SignalRDemo.hubs
             /// <summary>
             /// Synchronize new users with table and chat data
             /// </summary>
-            public void Synchronize()
+            public void Synchronize(string id, string color)
             {
+            //get updates
 
+            //convert to list
+
+            //for loop
+            //call redraw with cellID and Color
+            Redraw(id, color);
+                
             }
 
             /// <summary>
