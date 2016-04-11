@@ -25,8 +25,7 @@
 
     conn.client.redraw = function (cellID, color) //Update table cells
     {
-        $('#' + cellID).removeClass();
-        $('#' + cellID).addClass(color);
+        $('#' + cellID).css('background-color', color);
     }
 
     //----------Start Connection-----------//
@@ -44,10 +43,10 @@
 
         //Bind Dragover for color application
         $('th').bind('dragenter', function (ev) {
-            conn.server.redraw(ev.target.id, $('#colors option:selected').text());
+            conn.server.redraw(ev.target.id, $('#colorHex').val());
         });
         $('th').bind('dragstart', function (ev) {
-            conn.server.redraw(ev.target.id, $('#colors option:selected').text());
+            conn.server.redraw(ev.target.id, $('#colorHex').val());
         });
 
 
@@ -64,7 +63,7 @@
         //Draw
         $('th').click(function (ev) {
             var cellID = ev.target.id;
-            var color = $('#colors option:selected').text();
+            var color = $('#colorHex').val();
 
             conn.server.redraw(cellID, color);
         });

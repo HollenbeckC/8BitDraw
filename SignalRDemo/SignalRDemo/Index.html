@@ -4,23 +4,19 @@
     <link href="favicon.ico" rel="icon" />
     <title>8-Bit Draw</title>
     <!--Start Styles-->
+    <link href="spectrum.css" rel="stylesheet" />
     <link href="index.css" rel="stylesheet" />
     <!--End Styles-->
 </head>
 <body>
 
     <div style="float:right;">
-        <select id="colors">
-            <option>red</option>
-            <option>blue</option>
-            <option>green</option>
-            <option>yellow</option>
-            <option>black</option>
-            <option>white</option>
-        </select>
+        <input type='text' id="custom" />
+        <input type="hidden" id="colorHex"/>
         <div id="drawBoard"></div>
 
     </div>
+
 
     <div id="messageBoard" class="container">
         <div class="message-frame">
@@ -39,8 +35,15 @@
     <script src="scripts/jquery-1.6.4.min.js"></script>
     <script src="scripts/jquery.signalR-2.2.0.min.js"></script>
     <script src="signalr/hubs"></script>
+    <script src="scripts/spectrum.js"></script>
     <script src="connect.js"></script>
-    <script type="text/javascript"></script>
+    <script type="text/javascript">$("#custom").spectrum({
+    change: function(clr)
+    {
+        $('#colorHex').val(clr.toHexString());
+    }
+});
+        </script>
 
 </body>
 </html>
