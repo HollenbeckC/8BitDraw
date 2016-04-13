@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace SignalRDemo.hubs
 {
@@ -39,25 +41,38 @@ namespace SignalRDemo.hubs
             Send(username, "logged out");
             }
 
-            /// <summary>
-            /// Synchronize new users with table and chat data
-            /// </summary>
-            public void Synchronize(string id, string color)
+        /// <summary>
+        /// Synchronize new users with table and chat data
+        /// </summary>
+        public void Synchronize()
+        {
+            DataTable dataTable = new DataTable();
+            SqlConnection conn = new SqlConnection("Data Source = winserv; Initial Catalog = gilmourd_db; Integrated Security = True");
+            //string connString = @"Data Source = winserv; Initial Catalog = gilmourd_db; Integrated Security = True";
+            string query = "SELECT * FROM [Signal_R_Draw]";
+            // SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand(query, conn);
+            conn.Open();
+            // create data adapter
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            // this will query your database and return the result to your datatable
+            da.Fill(dataTable);
+            conn.Close();
+            da.Dispose();
+
+            if (dataTable.Rows.Count != 0)
             {
-            //get updates
-
-            //convert to list
-
-            //for loop
-            //call redraw with cellID and Color
-            Redraw(id, color);
-                
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Clients.All.redraw(row.ItemArray[1], row.ItemArray[2]);
+                }
             }
+        }
 
-            /// <summary>
-            /// Update the Table with each click
-            /// </summary>
-            public void Redraw(string cellID, string color)
+        /// <summary>
+        /// Update the Table with each click
+        /// </summary>
+        public void Redraw(string cellID, string color)
             {
                 Clients.All.redraw(cellID, color);
             }

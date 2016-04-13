@@ -34,11 +34,8 @@
         //Login
         $(function () {
             conn.server.login($('#displayname').val());
+            conn.server.synchronize();
         });
-
-        $(function () {
-            conn.server.synchronize('A1','blue');
-        })
 
 
         //Bind Dragover for color application
