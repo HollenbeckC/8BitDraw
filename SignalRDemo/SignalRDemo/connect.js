@@ -31,7 +31,7 @@
     //----------Start Connection-----------//
     //-----------Push new data TO server---//
     $.connection.hub.start().done(function () {
-        //Login
+        //On Page Load
         $(function () {
             conn.server.login($('#displayname').val());
             conn.server.synchronize();
@@ -39,12 +39,10 @@
 
 
         //Bind Dragover for color application
-        $('th').bind('dragenter', function (ev) {
+        $('th').bind('dragenter dragover dragstart dragend dragleave', function (ev) {
             conn.server.redraw(ev.target.id, $('#colorHex').val());
         });
-        $('th').bind('dragstart', function (ev) {
-            conn.server.redraw(ev.target.id, $('#colorHex').val());
-        });
+
 
         $(window).unload(function () {
             conn.server.logoout($('#displayname').val());
