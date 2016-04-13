@@ -45,9 +45,8 @@
 
 
         $(window).unload(function () {
-            conn.server.logoout($('#displayname').val());
-
-            conn.server.truncate();
+            conn.server.logout($('#displayname').val());
+           // conn.server.truncate();
         })
 
 

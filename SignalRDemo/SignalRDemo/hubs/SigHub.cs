@@ -5,6 +5,7 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using System.Data;
 using System.Data.SqlClient;
+using Hangfire;
 
 namespace SignalRDemo.hubs
 {
@@ -70,6 +71,20 @@ namespace SignalRDemo.hubs
             }
         }
 
+        public bool Truncate()
+        {
+            DataTable dataTable = new DataTable();
+            SqlConnection conn = new SqlConnection("Data Source = winserv; Initial Catalog = gilmourd_db; Integrated Security = True");
+            //string connString = @"Data Source = winserv; Initial Catalog = gilmourd_db; Integrated Security = True";
+            string query = "Truncate Table [Signal_R_Draw]";
+            // SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand(query, conn);
+            conn.Open();     
+            cmd.ExecuteNonQuery();        
+            conn.Close();
+            return Truncate();   
+        }
+
         /// <summary>
         /// Update the Table with each click
         /// </summary>
@@ -82,7 +97,6 @@ namespace SignalRDemo.hubs
             command.ExecuteNonQuery();
             conn.Close();
             Clients.All.redraw(cellID, color);
-
         }
     }
 }
