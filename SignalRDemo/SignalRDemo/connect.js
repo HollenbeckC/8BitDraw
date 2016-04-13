@@ -50,6 +50,10 @@
             conn.server.redraw(ev.target.id, $('#colors option:selected').text());
         });
 
+        $(window).unload(function () {
+            conn.server.logoout($('#displayname').val());
+        })
+
 
 
         //Chat
