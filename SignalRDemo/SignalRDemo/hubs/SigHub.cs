@@ -46,6 +46,7 @@ namespace SignalRDemo.hubs
         /// </summary>
         public void Synchronize()
         {
+           
             DataTable dataTable = new DataTable();
             SqlConnection conn = new SqlConnection("Data Source = winserv; Initial Catalog = gilmourd_db; Integrated Security = True");
             //string connString = @"Data Source = winserv; Initial Catalog = gilmourd_db; Integrated Security = True";
@@ -73,8 +74,15 @@ namespace SignalRDemo.hubs
         /// Update the Table with each click
         /// </summary>
         public void Redraw(string cellID, string color)
-            {
-                Clients.All.redraw(cellID, color);
-            }
+        {
+
+            SqlConnection conn = new SqlConnection("Data Source = winserv; Initial Catalog = gilmourd_db; Integrated Security = True");
+            conn.Open();
+            SqlCommand command = new SqlCommand("INSERT INTO [Signal_R_Draw](ID, CellID, Color) values(1,'" + cellID + "','" + color + "')", conn);
+            command.ExecuteNonQuery();
+            conn.Close();
+            Clients.All.redraw(cellID, color);
+
         }
+    }
 }
