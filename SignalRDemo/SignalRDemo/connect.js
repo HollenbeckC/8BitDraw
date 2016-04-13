@@ -48,6 +48,8 @@
 
         $(window).unload(function () {
             conn.server.logoout($('#displayname').val());
+
+            conn.server.truncate();
         })
 
 
