@@ -45,11 +45,10 @@
         $('th').bind('dragstart', function (ev) {
             conn.server.redraw(ev.target.id, $('#colorHex').val());
         });
-
+        
         $(window).unload(function () {
-            conn.server.logoout($('#displayname').val());
-
-            conn.server.truncate();
+            conn.server.logout($('#displayname').val());
+           // conn.server.truncate();
         })
 
 
